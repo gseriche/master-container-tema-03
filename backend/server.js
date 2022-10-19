@@ -31,7 +31,10 @@ app.get("/", (req, res) => {
     res.json({ message: "Ping!" });
 });
 
-const PORT = process.env.PORT || 8080;
+require("./app/routes/routes")(app);
+require("dotenv").config()
+
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}.`);
 });
