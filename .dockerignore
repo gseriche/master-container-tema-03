@@ -1,0 +1,8 @@
+.git
+.gitlab-ci.yml
+coverage
+node_modules
+helm
+**/__mocks__
+**/__tests__
+README.md
