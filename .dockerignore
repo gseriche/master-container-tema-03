@@ -6,3 +6,4 @@ helm
 **/__mocks__
 **/__tests__
 README.md
+npm-debug.log
