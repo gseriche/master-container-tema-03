@@ -2,13 +2,13 @@ const db = require("../models");
 const Tutorial = db.tutorials;
 
 exports.create = (req, res) => {
-    if(!req.body.tittle) {
+    if(!req.body.title) {
         res.status(400).send({ message: "El contenido no puede estar vacío!" });
         return;
     }
 
     const tutorial = new Tutorial ({
-        title: req.body.tittle,
+        title: req.body.title,
         description: req.body.description,
         published: req.body.published ? req.body.published : false 
     });
@@ -27,7 +27,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    const title = req.query.tittle;
+    const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
 
     Tutorial.find(condition)
