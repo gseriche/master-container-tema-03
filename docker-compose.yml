@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: harbor.tallerdevops.com/gonzalo-seriche-vega/mongo:6.0.2
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    ports:
+      - 27017:27017
+    volumes:
+      - type: bind
+        source: ./database-data
+        target: /data/db
+
+  frontend:
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - mongodb
+    ports:
+      - 8081:8081
+    image: harbor.tallerdevops.com/gonzalo-seriche-vega/frontend:20221019
+
+  backend:
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    ports:
+      - 8080:8080  
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mongodb
+      - DB_USER=root
+      - DB_PASSWORD=123456
+      - DB_NAME=gseriche_db
+      - DB_PORT=27017
+      - NODE_DOCKER_PORT=8080
+    image: harbor.tallerdevops.com/gonzalo-seriche-vega/backend:20221019
+
