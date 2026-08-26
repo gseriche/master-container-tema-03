@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/gseriche/master-container-tema-03#readme",
   "dependencies": {
-    "body-parser": "^1.20.4",
+    "body-parser": "^1.20.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.22.1",
